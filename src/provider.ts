@@ -12,10 +12,10 @@ export default class Provider {
 		this.multicallAddress = getAddress(1);
 	}
 
-	async init(provider: BaseProvider) {
+	async init(provider: BaseProvider, multicallAddress?: string) {
 		this.provider = provider;
 		const network = await provider.getNetwork();
-		this.multicallAddress = getAddress(network.chainId);
+		this.multicallAddress = multicallAddress ? multicallAddress : getAddress(network.chainId);
 	}
 
 	getEthBalance(address: string) {
